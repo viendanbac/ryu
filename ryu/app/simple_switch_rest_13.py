@@ -28,11 +28,17 @@ from ryu.lib import dpid as dpid_lib
 simple_switch_instance_name = 'simple_switch_api_app'
 url = '/simpleswitch/mactable/{dpid}'
 
-
+#Define the URL to receive the HTTP request and its corresponing method.
 class SimpleSwitchRest13(simple_switch_13.SimpleSwitch13):
-
-    _CONTEXTS = {'wsgi': WSGIApplication}
-
+    
+    # Specify Ryu's WSGI-compatible webserver class
+    # WSGI's web server instance can be acquired by a key called the **wsgi** key
+    _CONTEXTS = {'wsgi': WSGIApplication} 
+    
+    ***
+    - Constructor acquires the instance of WSGIApplication to register to the controller class
+    - 
+    ***
     def __init__(self, *args, **kwargs):
         super(SimpleSwitchRest13, self).__init__(*args, **kwargs)
         self.switches = {}
